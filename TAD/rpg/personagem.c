@@ -13,8 +13,9 @@
 
 
 PERSONAGEM* personagem_criar(char* nome, int vida, int ataque, int defesa){
-  if(nome == NULL || vida <= 0 || ataque <= 0 || defesa <= 0) return NULL;
-
+  if(nome == NULL || vida <= 0) {
+    return NULL;
+  }
   PERSONAGEM *p = malloc(sizeof(PERSONAGEM));
   if(p == NULL) return NULL;
 
@@ -49,15 +50,14 @@ void personagem_print(PERSONAGEM *p){
 }
   
 bool personagem_atacar(PERSONAGEM *atacante, PERSONAGEM *defensor){
-  if(atacante != NULL && defensor != NULL){
+  if(atacante != NULL && defensor != NULL && atacante->vida >= 0){
     int dano = atacante->ataque - defensor->defesa;
     if(dano > 0){
-      if((defensor->vida - dano) > 0){
-        defensor->vida -= dano;
+      defensor->vida -= dano;
+      if(defensor->vida > 0){
         return false;
       }
       else{
-        defensor->vida = 0;
         return true;
       }
     } else return false;

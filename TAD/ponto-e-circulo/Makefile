@@ -13,6 +13,9 @@ PROGRAMA = ponto_circulo
 
 # Regra principal.
 # Para gerar o programa, precisamos dos tres arquivos objeto.
+
+all: $(PROGRAMA)
+
 $(PROGRAMA): main.o ponto.o circulo.o
 	$(CC) main.o ponto.o circulo.o -o $(PROGRAMA)
 
@@ -29,9 +32,13 @@ ponto.o: ponto.c ponto.h
 circulo.o: circulo.c circulo.h
 	$(CC) $(CFLAGS) -c circulo.c
 
+# Regra de execução
+run: $(PROGRAMA)
+	./$(PROGRAMA)
+
 # Remove os arquivos produzidos pela compilacao.
 clean:
 	rm -f *.o $(PROGRAMA)
 
 # Diz ao make que clean nao e o nome de um arquivo.
-.PHONY: clean
+.PHONY: all clean

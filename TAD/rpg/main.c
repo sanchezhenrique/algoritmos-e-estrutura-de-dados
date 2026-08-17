@@ -12,14 +12,16 @@ int main(){
   int vida2, ataque2, defesa2;
 
   fgets(nome1, MAX_BUFFER, stdin);
-  nome1[strcspn(nome1, "\n")] = '\0';
+  nome1[strcspn(nome1, "\r\n")] = '\0';
   scanf("%d %d %d", &vida1, &ataque1, &defesa1);
-  getchar(); // Limpa \n
+  getchar(); // Limpa \r
+  getchar(); //Limpa \n
 
   fgets(nome2, MAX_BUFFER, stdin);
-  nome2[strcspn(nome2, "\n")] = '\0';
+  nome2[strcspn(nome2, "\r\n")] = '\0';
   scanf("%d %d %d", &vida2, &ataque2, &defesa2);
-  getchar(); // Limpa \n
+  getchar(); // Limpa \r
+  getchar(); //Limpa \r
   
   PERSONAGEM *p1 = personagem_criar(nome1, vida1, ataque1, defesa1);
   free(nome1);

@@ -23,9 +23,13 @@ main.o: main.c personagem.h
 personagem.o: personagem.c personagem.h
 	$(CC) $(CFLAGS) -c personagem.c
 
+# Regra de execução
+run: $(PROGRAMA)
+	./$(PROGRAMA)
+
 # Remove os arquivos produzidos pela compilacao.
 clean:
 	rm -f *.o $(PROGRAMA)
 
 # Diz ao make que clean nao e o nome de um arquivo.
-.PHONY: clean
+.PHONY: all clean
